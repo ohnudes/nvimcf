@@ -7,5 +7,4 @@ local function git_push()
 end
 
 -- Bind the function to the <leader>gs keymap
-vim.keymap.set("n", "<leader>p", git_push)
-
+vim.keymap.set("n", "<leader>gp", git_push)
