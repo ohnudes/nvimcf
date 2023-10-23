@@ -1,8 +1,6 @@
 
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("n", "k", "kzz")
-vim.keymap.set("n", "j", "jzz")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -48,7 +46,20 @@ vim.api.nvim_set_keymap('t', '<C-w><C-w>', '<C-\\><C-n>', {noremap = true})
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
-
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 end)
 
+local focus_state = "off"
+
+local function toggle_focus()
+	if focus_state == "off" then
+		vim.keymap.set("n", "k", "kzz")
+		vim.keymap.set("n", "j", "jzz")
+		focus_state = "on"
+	else
+		vim.keymap.set("n", "k", "k")
+		vim.keymap.set("n", "j", "j")
+		focus_state = "off"
+	end
+end
+
+vim.keymap.set("n", "<leader>t", toggle_focus)
